@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Simple To-do list with vanilla javaScript, user can Create, Read, Update and Delete task from list."
+    />
+    <script
+      src="https://kit.fontawesome.com/38f8bca810.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <title>To-do List | javascript project</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>To-do List</h1>
+      <form id="main_form" class="form">
+        <input
+          aria-label="input-for-title"
+          name="todoTitle"
+          type="text"
+          id="todo-title"
+          placeholder="Add task"
+          autofocus
+        />
+        <button aria-label="submit-task" class="Submit-btn" id="add-task">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </form>
+      <div id="todos-list"></div>
+    </div>
+  </body>
+</html>

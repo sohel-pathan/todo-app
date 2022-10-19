@@ -4,21 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Simple To-do list with vanilla javaScript, user can Create, Read, Update and Delete task from list."
-    />
+    <meta name="description" content="To-do List javascript project" />
+    <!-- fontawesome -->
     <script
+      defer
       src="https://kit.fontawesome.com/38f8bca810.js"
       crossorigin="anonymous"
     ></script>
+    <!-- javaScript -->
     <script defer src="./script.js"></script>
+    <!-- css stylesheet -->
     <link rel="stylesheet" href="./style.css" />
+    <!-- title -->
     <title>To-do List | javascript project</title>
   </head>
   <body>
+    <!-- main container -->
     <div class="container">
+      <!-- heading -->
       <h1>To-do List</h1>
+      <!-- main form  -->
       <form id="main_form" class="form">
         <input
           aria-label="input-for-title"
@@ -28,11 +33,15 @@
           placeholder="Add task"
           autofocus
         />
+        <!-- submit button for main form -->
         <button aria-label="submit-task" class="Submit-btn" id="add-task">
           <i class="fa-solid fa-plus"></i>
         </button>
       </form>
-      <div id="todos-list"></div>
+      <!-- empty div for todos item -->
+      <div class="todo_list_container" id="todos-list">
+        <!-- for todos list item -->
+      </div>
     </div>
   </body>
 </html>

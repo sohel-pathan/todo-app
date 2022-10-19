@@ -70,7 +70,7 @@ const renderList = () => {
 
   // forEach loop on todos array
   todos.forEach((todo) => {
-    // todo list item
+    // div for todo list item 
     let todoListItem = document.createElement("div");
     todoListItem.classList.add("todo_list_item");
 

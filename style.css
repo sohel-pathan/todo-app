@@ -97,19 +97,24 @@ body {
   grid-template-columns: 25px 1fr 25px 25px;
   align-items: center;
   column-gap: 20px;
-  height: 44px;
+  min-height: 45px;
   padding-bottom: 5px;
   border-bottom: 2px solid var(--LightCyan);
 }
 
 /* todo title div */
 .todo_title {
-  color: var(--LightCyan);
-  overflow-x: hidden;
   grid-column-start: 2;
   grid-column-end: 3;
+  overflow-x: hidden;
+}
+.todo_title > p {
   letter-spacing: 1px;
   font-size: 2rem;
+  color: var(--LightCyan);
+  height: 100%;
+  width: 100%;
+  line-break: loose;
 }
 
 /* line class for completed task title */

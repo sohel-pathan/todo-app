@@ -19,6 +19,8 @@ const submitTodo = (e) => {
     return renderList();
   } else return alert('Please add Task');
 };
+// add submit eventListner on form
+form.addEventListener('submit', submitTodo);
 
 // fuction for delete todo item
 const deleteTodo = (taskIdToDelete) => {
@@ -54,9 +56,6 @@ const submitNewTodo = (e, newTitle, taskIdToChange) => {
     }
   });
 };
-
-// add submit eventListner on form
-form.addEventListener('submit', submitTodo);
 
 // function for rendering todos list
 const renderList = () => {

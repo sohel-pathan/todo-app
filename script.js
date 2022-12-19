@@ -1,9 +1,9 @@
 // select element
-const todoList = document.getElementById("todos-list");
-const form = document.getElementById("main_form");
+const form = document.getElementById('main_form');
+const todoList = document.getElementById('todos-list');
 
-// read previous tasks. If no tasks were found, start with an empty list
-let todos = JSON.parse(localStorage.getItem("tasks")) || [];
+// get todos from localStorage, if localStorage empty start with empty array
+let todos = JSON.parse(localStorage.getItem('tasks'));
 
 // function for submit todo item
 const submitTodo = (e) => {
@@ -12,16 +12,13 @@ const submitTodo = (e) => {
   let title = form.todoTitle.value;
   // generate random numbers for task id
   let id = new Date().getTime().toString();
-  if (title !== "") {
+  if (title !== '') {
     //   add task in todos
     todos.push({ title: title, id: id, complete: false, editTask: false });
-    form.todoTitle.value = "";
+    form.todoTitle.value = '';
     return renderList();
-  } else return alert("Please add Task");
+  } else return alert('Please add Task');
 };
-
-// add submit eventListner on form
-form.addEventListener("submit", submitTodo);
 
 // fuction for delete todo item
 const deleteTodo = (taskIdToDelete) => {
@@ -37,7 +34,7 @@ const markComplete = (taskIdtoComplete) => {
   return renderList();
 };
 
-// function for enter and exit task edit
+// function for edit task
 const editTaskMode = (taskIdtoEdit) => {
   todos.forEach((item) => {
     taskIdtoEdit === item.id && (item.editTask = !item.editTask);
@@ -45,7 +42,7 @@ const editTaskMode = (taskIdtoEdit) => {
   return renderList();
 };
 
-// function for submit new edited title
+// function for submit edited task
 const submitNewTodo = (e, newTitle, taskIdToChange) => {
   e.preventDefault();
   return todos.forEach((todo) => {
@@ -58,83 +55,83 @@ const submitNewTodo = (e, newTitle, taskIdToChange) => {
   });
 };
 
+// add submit eventListner on form
+form.addEventListener('submit', submitTodo);
+
 // function for rendering todos list
 const renderList = () => {
   // store the new task in localStorage
-  localStorage.setItem("tasks", JSON.stringify(todos));
+  localStorage.setItem('tasks', JSON.stringify(todos));
 
-  // update task in todos array
-  todos = JSON.parse(localStorage.getItem("tasks")) || [];
-
-  todoList.innerHTML = "";
+  todoList.innerHTML = '';
 
   // forEach loop on todos array
   todos.forEach((todo) => {
-    // div for todo list item 
-    let todoListItem = document.createElement("div");
-    todoListItem.classList.add("todo_list_item");
+    // div for todo list item
+    let todoListItem = document.createElement('div');
+    todoListItem.classList.add('todo_list_item');
 
     // conditional rendering for editing task
     if (todo.editTask) {
       // create form for edit task
-      let formForEditTodoTitle = document.createElement("form");
-      formForEditTodoTitle.classList.add("newForm");
-      formForEditTodoTitle.setAttribute("id", todo.id);
+      let formForEditTodoTitle = document.createElement('form');
+      formForEditTodoTitle.classList.add('newForm');
+      formForEditTodoTitle.setAttribute('id', todo.id);
       formForEditTodoTitle.onsubmit = (e) =>
         submitNewTodo(e, newTitle, todo.id);
 
       // input for new title
-      let newTitle = document.createElement("input");
-      newTitle.name = "newTitle";
+      let newTitle = document.createElement('input');
+      newTitle.name = 'newTitle';
       newTitle.value = todo.title;
-      newTitle.classList.add("editInput");
+      newTitle.classList.add('editInput');
 
-      // submit button for this form
-      let btnForNewTitle = document.createElement("button");
-      btnForNewTitle.classList.add("submit_new_title");
-      btnForNewTitle.setAttribute("form", todo.id);
+      // submit button
+      let btnForNewTitle = document.createElement('button');
+      btnForNewTitle.classList.add('submit_new_title');
+      btnForNewTitle.setAttribute('form', todo.id);
       btnForNewTitle.innerHTML = '<i class="fa-solid fa-check"></i>';
 
       // button for cancel new title and exit from editing mode
-      let cancentbtn = document.createElement("button");
-      cancentbtn.classList.add("cancel_new_title");
+      let cancentbtn = document.createElement('button');
+      cancentbtn.classList.add('cancel_new_title');
       cancentbtn.onclick = () => editTaskMode(todo.id);
       cancentbtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
 
-      // append to the todo list
+      // append element to todoListItem
       formForEditTodoTitle.appendChild(newTitle);
       todoListItem.appendChild(formForEditTodoTitle);
       todoListItem.appendChild(btnForNewTitle);
       todoListItem.appendChild(cancentbtn);
     } else {
       // div todo title
-      let todoTask = document.createElement("div");
-      todoTask.classList.add("todo_title");
-      todoTask.innerHTML = `<p class=${todo.complete ? "line" : ""}>${
+      let todoTask = document.createElement('div');
+      todoTask.classList.add('todo_title');
+      todoTask.innerHTML = `<p class=${todo.complete ? 'line' : ''}>${
         todo.title
       }</p>`;
 
       //  complete button
-      let completeBtn = document.createElement("button");
+      let completeBtn = document.createElement('button');
       completeBtn.onclick = () => markComplete(todo.id);
-      completeBtn.classList.add("completeBtn");
+      completeBtn.classList.add('completeBtn');
       completeBtn.innerHTML = `<i class="fa-regular ${
-        todo.complete ? "fa-square-check" : "fa-square"
+        todo.complete ? 'fa-square-check' : 'fa-square'
       } complete"></i>`;
 
-      // dlete button
-      let deleteBtn = document.createElement("button");
+      // delete button
+      let deleteBtn = document.createElement('button');
       deleteBtn.onclick = () => deleteTodo(todo.id);
-      deleteBtn.classList.add("deletebtn");
+      deleteBtn.classList.add('deletebtn');
       deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can delete"></i>';
 
       // edit button
-      let editBTn = document.createElement("button");
+      let editBTn = document.createElement('button');
       editBTn.onclick = () => editTaskMode(todo.id);
-      editBTn.classList.add("editBtn");
+      editBTn.classList.add('editBtn');
       editBTn.innerHTML = '<i class="fa-solid fa-edit"></i>';
 
-      // append element to the todo list item
+      // append element to the todoListItem
       todoListItem.appendChild(completeBtn);
       todoListItem.appendChild(todoTask);
       todoListItem.appendChild(deleteBtn);

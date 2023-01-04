@@ -3,7 +3,7 @@ const form = document.getElementById('main_form');
 const todoList = document.getElementById('todos-list');
 
 // get todos from localStorage, if localStorage empty start with empty array
-let todos = JSON.parse(localStorage.getItem('tasks'));
+let todos = JSON.parse(localStorage.getItem('tasks')) || [];
 
 // function for submit todo item
 const submitTodo = (e) => {
@@ -61,6 +61,8 @@ const submitNewTodo = (e, newTitle, taskIdToChange) => {
 const renderList = () => {
   // store the new task in localStorage
   localStorage.setItem('tasks', JSON.stringify(todos));
+
+  todos = JSON.parse(localStorage.getItem('tasks'));
 
   todoList.innerHTML = '';
 
